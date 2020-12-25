@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: database-document
+  datasource:
+    url: jdbc:mysql://127.0.0.1/database_document?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: root
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
