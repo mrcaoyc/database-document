@@ -13,6 +13,7 @@ ext {
     set("mybatisVersion", "2.1.4")
     set("springfoxStarterVersion", "3.0.0")
     set("commonsLangVersion", "3.11")
+    set("mssqlJdbcVersion", "7.0.0.jre8")
 }
 
 repositories {
@@ -49,6 +50,8 @@ dependencies {
     implementation("org.apache.poi:poi-ooxml:${poiVserion}")
     implementation("org.apache.commons:commons-lang3:${commonsLangVersion}")
     implementation("io.springfox:springfox-boot-starter:${springfoxStarterVersion}")
+    implementation("com.microsoft.sqlserver:mssql-jdbc:${mssqlJdbcVersion}")
+
 
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")

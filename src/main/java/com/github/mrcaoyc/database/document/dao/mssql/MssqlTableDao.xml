@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.mrcaoyc.database.document.dao.mssql.MssqlTableDao">
+
+    <select id="countTables" resultType="long">
+        select count(*) from sysobjects where xtype='u'
+    </select>
+
+    <select id="selectList" resultType="com.github.mrcaoyc.database.document.model.po.MsSqlTableDO">
+        select t.id as id,t.name as table_name,ep.value as table_comment from (
+	        select * from sysobjects where xtype='u'  order by name
+	        offset #{pageable.offset} rows fetch next #{pageable.pageSize} rows only
+        ) t
+        left join sys.extended_properties ep on ep.major_id=t.id and ep.minor_id=0 order by t.name
+    </select>
+
+    <select id="selectAll" resultType="com.github.mrcaoyc.database.document.model.po.MsSqlTableDO">
+        select
+		    so.id as id,
+		    so.name as table_name,
+		    ep.value as table_comment
+		 from sysobjects  so
+			left join sys.extended_properties ep on ep.major_id=so.id and ep.minor_id=0
+		where so.xtype='u'
+		order by so.name
+    </select>
+
+</mapper>

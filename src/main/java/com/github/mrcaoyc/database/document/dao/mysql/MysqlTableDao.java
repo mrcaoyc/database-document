@@ -1,4 +1,4 @@
-package com.github.mrcaoyc.database.document.dao;
+package com.github.mrcaoyc.database.document.dao.mysql;
 
 import com.github.mrcaoyc.database.document.model.po.MySqlTableDO;
 import org.apache.ibatis.annotations.Mapper;

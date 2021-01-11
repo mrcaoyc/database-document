@@ -11,7 +11,7 @@ public class DatabaseTypeConstant {
     public static final byte MYSQL = (byte) 0;
 
     /**
-     * SQL SERVER
+     * MSSQL
      */
-    public static final byte SQL_SERVER = (byte) 1;
+    public static final byte MSSQL = (byte) 1;
 }

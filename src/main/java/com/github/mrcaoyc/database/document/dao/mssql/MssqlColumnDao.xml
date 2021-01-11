@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.mrcaoyc.database.document.dao.mssql.MssqlColumnDao">
+
+    <select id="findByDatabaseAndTable" resultType="com.github.mrcaoyc.database.document.model.po.MsSqlColumnDO">
+        select
+            col.name as column_name,
+            col.isnullable AS is_nullable,
+            tp.name as column_type,
+            ep.value as column_comment
+        from sysobjects obj
+            inner join syscolumns col on col.id=obj.id
+            inner join systypes tp on tp.xusertype=col.xusertype
+            left join sys.extended_properties ep on ep.major_id=col.id and ep.minor_id=col.colid
+            where obj.xtype='U' and obj.name=#{tableName}
+        order by col.colorder;
+    </select>
+
+</mapper>

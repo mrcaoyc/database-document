@@ -1,6 +1,7 @@
 package com.github.mrcaoyc.database.document.model.converter;
 
 import com.github.mrcaoyc.database.document.model.dto.TableDTO;
+import com.github.mrcaoyc.database.document.model.po.MsSqlTableDO;
 import com.github.mrcaoyc.database.document.model.po.MySqlTableDO;
 import com.github.mrcaoyc.database.document.model.vo.TableListResponse;
 import org.mapstruct.Mapper;
@@ -40,4 +41,22 @@ public interface TableConverter {
      * @return TableListResponse List
      */
     List<TableListResponse> toTableListResponseList(List<TableDTO> source);
+
+    /**
+     * MySqlTableDO To TableDTO
+     *
+     * @param source MySqlTableDO
+     * @return TableDTO
+     */
+    @Mapping(target = "name", source = "tableName")
+    @Mapping(target = "description", source = "tableComment")
+    TableDTO toTableDto(MsSqlTableDO source);
+
+    /**
+     * List<MsSqlTableDO> To  List<TableDTO>
+     *
+     * @param tableDoList List<MsSqlTableDO>
+     * @return List<TableDTO>
+     */
+    List<TableDTO> mssqlTableDoList2TableDtoList(List<MsSqlTableDO> tableDoList);
 }

@@ -1,6 +1,6 @@
 package com.github.mrcaoyc.database.document.manager.dynamic.impl;
 
-import com.github.mrcaoyc.database.document.dao.MysqlColumnDao;
+import com.github.mrcaoyc.database.document.dao.mysql.MysqlColumnDao;
 import com.github.mrcaoyc.database.document.manager.dynamic.ColumnManager;
 import com.github.mrcaoyc.database.document.model.converter.ColumnConverter;
 import com.github.mrcaoyc.database.document.model.dto.ColumnDTO;
@@ -25,6 +25,6 @@ public class MysqlColumnManagerImpl implements ColumnManager {
     @Override
     public List<ColumnDTO> listColumns(String databaseName, String tableName) {
         List<MySqlColumnDO> mysqlColumnDoList = mysqlColumnDao.findByDatabaseAndTable(databaseName, tableName);
-        return columnConverter.toColumnDtoList(mysqlColumnDoList);
+        return columnConverter.mySqlColumnDoList2ColumnDtoList(mysqlColumnDoList);
     }
 }
